@@ -1,0 +1,20 @@
+language: python:3.7
+
+before_script:
+  - git tag -l
+  - git branch -avv
+  - git status
+  - git show -q
+  - env
+  - python --version
+  - which python
+  - python -m pip install --upgrade pip
+
+script:
+  - python -m pip install -r requirements.txt
+  - mypy --config-file=tests/mypy.ini src/ --html-report tests/mypy
+  - pylint --rcfile=tests/.pylintrc src/
+  - pytest --cov=tests --cov-report=html:tests/pytest tests
+
+after_success:
+  - codecov
