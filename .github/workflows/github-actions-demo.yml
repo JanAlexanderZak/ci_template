@@ -1,8 +1,11 @@
-name: GitHub Actions Demo
+name: Pytest Template
 on: [push]
+
 jobs:
-  Explore-GitHub-Actions:
+  Pytest-Template:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
+
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
@@ -14,4 +17,35 @@ jobs:
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
+      
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.9"
+        run: |
+          git tag -l
+          git branch
+          git status
+          git show -q
+          python --version
+          where python
+          which python
+            
+      - name: Install dependencies
+        run: |
+            pip install --upgrade pip
+            pip install -r requirements.txt
+
+      - name: Run Pytest
+        run: |
+          pytest tests
+
+      - name: Run Pylint
+        run: |
+          pylint src
+
+      - name: Run Mypy
+        run: |
+          mypy src
+
       - run: echo "🍏 This job's status is ${{ job.status }}."
