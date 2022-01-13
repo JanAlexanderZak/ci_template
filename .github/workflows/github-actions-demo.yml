@@ -25,13 +25,13 @@ jobs:
 
       - name: Before Script
           run: |
-          git tag -l
-          git branch
-          git status
-          git show -q
-          python --version
-          where python
-          which python
+            git tag -l
+            git branch
+            git status
+            git show -q
+            python --version
+            where python
+            which python
             
       - name: Install dependencies
         run: |
