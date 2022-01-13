@@ -2,6 +2,7 @@
 
 disable=
     R0903, # too-few-public-methods
+    C0103, # invalid-name
     W0107, # unnecessary-pass
     C0112, # empty-docstring
     C0114, # missing-module-docstring
