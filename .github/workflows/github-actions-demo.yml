@@ -1,5 +1,7 @@
 name: Pytest Template
-on: [push]
+on:
+  push:
+    branches: [ main ]
 
 jobs:
   Pytest-Template:
