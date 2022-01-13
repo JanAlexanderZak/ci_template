@@ -30,7 +30,6 @@ jobs:
           git status
           git show -q
           python --version
-          where python
           which python
             
       - name: Install dependencies
