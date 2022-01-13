@@ -1,0 +1,48 @@
+pool:
+  name: Azure Pipelines
+  vmImage: 'ubuntu'
+
+trigger:
+- master
+
+variables:
+- name: python_version
+  value: '3.8'
+
+steps:
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: $(python_version)
+  displayName: 'Specify Python version'
+
+- task: PythonScript@0
+  inputs:
+    scriptSource: 'inline'
+    script: |
+      print('#' * 80 + '\nScripts')
+- script: |
+    git tag -l
+    git branch
+    git status
+    git show -q
+    python --version
+    where python
+    which python
+  displayName: 'Before Scripts'
+
+- script: |
+  pip install --upgrade pip
+  pip install -r requirements.txt
+displayName: 'Install Dependencies'
+
+- script: |
+  pylint src
+displayName: 'Run Pylint'
+
+- script: |
+  mypy src
+displayName: 'Run Mypy'
+
+- script: |
+  pytest tests
+displayName: 'Run Pytest'
