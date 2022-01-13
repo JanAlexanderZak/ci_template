@@ -24,14 +24,14 @@ jobs:
           python-version: "3.9"
 
       - name: Before Script
-          run: |
-            git tag -l
-            git branch
-            git status
-            git show -q
-            python --version
-            where python
-            which python
+        run: |
+          git tag -l
+          git branch
+          git status
+          git show -q
+          python --version
+          where python
+          which python
             
       - name: Install dependencies
         run: |
