@@ -1,6 +1,7 @@
 """
 Classes to test pytest
 """
+import json
 import numbers
 
 
@@ -15,7 +16,7 @@ def add(a, b):
 
 
 def read_json(some_file):
-    with open(some_file, 'r') as f:
+    with open(some_file, 'r', encoding='utf-8') as f:
         return json.load(f)
 
 
@@ -43,4 +44,4 @@ class Calculator:
     @staticmethod
     def _check_operand(operand):
         if not isinstance(operand, numbers.Number):
-            raise CalculatorError('{operand} is not a number'.format(operand=operand))
+            raise CalculatorError(f'{operand} is not a number')
