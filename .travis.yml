@@ -1,4 +1,4 @@
-language: python:3.7
+language: python:3.9
 
 before_script:
   - git tag -l
